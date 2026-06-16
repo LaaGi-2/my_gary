@@ -1,4 +1,4 @@
-"# MyGary LightNovel — QuestNode Engine
+## MyGary LightNovel — QuestNode Engine
 
 Aplikasi **Flutter + Dart murni** untuk game fiksi interaktif berbasis teks (Branching Story / Decision Making). Naskah: **\"Server Error di Negeri Sendiri\"** — kisah Raka, seorang software developer muda yang terjepit himpitan ekonomi dan harus memilih: kabur, bertahan, atau kompromi.
 
