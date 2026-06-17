@@ -1,17 +1,3 @@
-// ============================================================
-// structures/dialog_queue.dart
-// ------------------------------------------------------------
-// QUEUE (FIFO - First In, First Out) - MANUAL.
-// Class DialogQueue menggunakan pointer `_front` dan `_rear`.
-// Teks dialog karakter masuk via ENQUEUE (ke _rear), lalu
-// ditampilkan ke layar urut dengan DEQUEUE (dari _front).
-//
-// >>> KAPAN FIFO TERJADI <<<
-// FIFO terjadi pada dequeue(): elemen yang PERTAMA di-enqueue
-// adalah yang PERTAMA dikeluarkan. Ini meniru antrean dialog
-// percakapan natural (urutan baris dialog tidak boleh diacak).
-// ============================================================
-
 class _QNode<T> {
   T data;
   _QNode<T>? next;
@@ -19,14 +5,14 @@ class _QNode<T> {
 }
 
 class DialogQueue<T> {
-  _QNode<T>? _front; // pointer depan (lokasi dequeue)
-  _QNode<T>? _rear;  // pointer belakang (lokasi enqueue)
+  _QNode<T>? _front;
+  _QNode<T>? _rear; 
   int _size = 0;
 
   int get size => _size;
   bool get isEmpty => _front == null;
 
-  // ENQUEUE: masukkan ke REAR (belakang).
+  // masukkan ke REAR (belakang).
   void enqueue(T data) {
     final node = _QNode<T>(data);
     if (_rear == null) {
@@ -39,7 +25,7 @@ class DialogQueue<T> {
     _size++;
   }
 
-  // DEQUEUE: keluarkan dari FRONT (depan) - FIFO.
+  // keluarkan dari FRONT (depan) - FIFO.
   T? dequeue() {
     if (_front == null) return null;
     final data = _front!.data;
@@ -52,7 +38,7 @@ class DialogQueue<T> {
   // Intip front tanpa keluarkan.
   T? peekFront() => _front?.data;
 
-  // Snapshot isi antrean (untuk UI).
+  // Snapshot isi antrean
   List<T> toList() {
     final list = <T>[];
     var cur = _front;

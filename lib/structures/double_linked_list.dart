@@ -1,16 +1,7 @@
-// ============================================================
-// structures/double_linked_list.dart
-// ------------------------------------------------------------
-// DOUBLE LINKED LIST (manual, tanpa package eksternal).
-// Digunakan untuk HISTORY LOG perjalanan cerita pemain.
-// - Tiap node punya pointer `next` dan `prev`.
-// - Bisa di-scan FORWARD (next) maupun BACKWARD (prev).
-// ============================================================
-
 class DLLNode<T> {
   T data;
-  DLLNode<T>? next; // pointer ke node berikutnya
-  DLLNode<T>? prev; // pointer ke node sebelumnya
+  DLLNode<T>? next;
+  DLLNode<T>? prev;
   DLLNode(this.data);
 }
 
@@ -38,7 +29,7 @@ class DoubleLinkedList<T> {
     _length++;
   }
 
-  // Hapus node di belakang (untuk operasi \"buang riwayat setelah undo\").
+  // Hapus node di belakang.
   T? removeLast() {
     if (_tail == null) return null;
     final removed = _tail!.data;
@@ -53,7 +44,7 @@ class DoubleLinkedList<T> {
     return removed;
   }
 
-  // FORWARD SCAN: head -> tail melalui pointer next.
+  //head -> tail melalui pointer next.
   List<T> forwardScan() {
     final result = <T>[];
     var cur = _head;
@@ -64,7 +55,7 @@ class DoubleLinkedList<T> {
     return result;
   }
 
-  // BACKWARD SCAN: tail -> head melalui pointer prev.
+  // tail -> head melalui pointer prev.
   List<T> backwardScan() {
     final result = <T>[];
     var cur = _tail;
