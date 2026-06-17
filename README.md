@@ -120,4 +120,3 @@ lib/
 5. Tekan **History** untuk melihat jejak perjalanan (forward / backward DLL).
 6. Tekan **Inventory** untuk melihat item yang dikumpulkan (BST in-order).
 7. Setelah mencapai ending → buka **Galeri Ending** dari home untuk lihat semua kemungkinan ending.
-"
