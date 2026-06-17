@@ -1,19 +1,9 @@
-// ============================================================
-// models/event.dart
-// ------------------------------------------------------------
-// INHERITANCE & POLYMORPHISM:
-// `Event` adalah parent class. `DialogEvent` dan `CombatEvent`
-// menggunakan keyword `extends`. Method `jalankanEvent()` di
-// OVERRIDE pada masing-masing child class.
-// ============================================================
-
 import 'player.dart';
 
 class Event {
   final String judul;
   Event(this.judul);
 
-  // Method dasar - akan di-override polimorfik di child class.
   String jalankanEvent(Player p) {
     return 'Event \"$judul\" terjadi.';
   }
@@ -21,7 +11,7 @@ class Event {
 
 class DialogEvent extends Event {
   final String pembicara;
-  final List<String> kalimat; // baris-baris dialog (akan masuk DialogQueue)
+  final List<String> kalimat; 
 
   DialogEvent({
     required String judul,
@@ -31,14 +21,13 @@ class DialogEvent extends Event {
 
   @override
   String jalankanEvent(Player p) {
-    // POLYMORPHISM: perilaku berbeda dari parent.
     return '[$pembicara]: ${kalimat.isNotEmpty ? kalimat.first : "..."}';
   }
 }
 
 class CombatEvent extends Event {
-  final int damage;     // damage ke health
-  final int karmaShift; // perubahan karma akibat konflik batin
+  final int damage;     
+  final int karmaShift;
 
   CombatEvent({
     required String judul,
@@ -48,7 +37,6 @@ class CombatEvent extends Event {
 
   @override
   String jalankanEvent(Player p) {
-    // POLYMORPHISM: terapkan damage & karma shift ke player.
     p.health = p.health - damage;
     p.karma = p.karma + karmaShift;
     return 'Pertarungan batin \"$judul\" menguras ${damage} HP.';

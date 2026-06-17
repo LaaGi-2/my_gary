@@ -1,9 +1,3 @@
-// ============================================================
-// widgets/grid_background.dart
-// ------------------------------------------------------------
-// Background bergaris-titik halus ala kertas grid notebook.
-// ============================================================
-
 import 'package:flutter/material.dart';
 import '../theme/app_theme.dart';
 

@@ -1,8 +1,8 @@
-"# MyGary LightNovel — QuestNode Engine
+## MyGary Story — Server Error di Negeri Sendiri
 
 Aplikasi **Flutter + Dart murni** untuk game fiksi interaktif berbasis teks (Branching Story / Decision Making). Naskah: **\"Server Error di Negeri Sendiri\"** — kisah Raka, seorang software developer muda yang terjepit himpitan ekonomi dan harus memilih: kabur, bertahan, atau kompromi.
 
-> Fokus utama project: **mensimulasikan Computer Science murni dengan Dart**. Semua struktur data dibangun dari nol (TANPA package eksternal), lengkap dengan OOP, polymorphism, dan algoritma rekursif.
+> Fokus utama project: **mensimulasikan matkul Struktur Data dan PBO dengan Dart**. Dengan menerapkan konsep OOP, polymorphism, dan algoritma rekursif.
 
 ---
 

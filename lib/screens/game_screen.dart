@@ -1,15 +1,3 @@
-// ============================================================
-// screens/game_screen.dart
-// ------------------------------------------------------------
-// Layar utama gameplay. Menggabungkan:
-//   - NarrativePanel
-//   - DialogQueuePanel (FIFO)
-//   - ChoiceButtons (binary tree branching)
-//   - ActionBar (Undo/LIFO, Redo, History, Inventory)
-//   - Drawer history (Double Linked List forward/backward)
-//   - BottomSheet inventory (BST in-order)
-// ============================================================
-
 import 'package:flutter/material.dart';
 import '../engine/game_engine.dart';
 import '../theme/app_theme.dart';
@@ -83,7 +71,7 @@ class _GameScreenState extends State<GameScreen> {
                     ),
                     const Spacer(),
                     Text(
-                      'MyGary LightNovel',
+                      'MyGary Story',
                       style: TextStyle(
                         fontFamily: 'serif',
                         fontStyle: FontStyle.italic,

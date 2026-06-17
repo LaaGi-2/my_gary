@@ -1,10 +1,3 @@
-
-// widgets/history_drawer.dart
-// ------------------------------------------------------------
-// Drawer \"History Log\" - menampilkan Double Linked List
-// dengan scan forward & backward.
-// ============================================================
-
 import 'package:flutter/material.dart';
 import '../engine/game_engine.dart';
 import '../theme/app_theme.dart';
@@ -57,7 +50,7 @@ class _HistoryDrawerState extends State<HistoryDrawer> {
                 children: [
                   ChoiceChip(
                     key: const ValueKey('history-forward-chip'),
-                    label: const Text('Forward ▶'),
+                    label: const Text('Forward'),
                     selected: _forward,
                     onSelected: (_) => setState(() => _forward = true),
                     selectedColor: AppTheme.goldClip,
@@ -67,7 +60,7 @@ class _HistoryDrawerState extends State<HistoryDrawer> {
                   const SizedBox(width: 8),
                   ChoiceChip(
                     key: const ValueKey('history-backward-chip'),
-                    label: const Text('◀ Backward'),
+                    label: const Text('Backward'),
                     selected: !_forward,
                     onSelected: (_) => setState(() => _forward = false),
                     selectedColor: AppTheme.goldClip,

@@ -1,11 +1,3 @@
-// ============================================================
-// theme/app_theme.dart
-// ------------------------------------------------------------
-// Tema visual \"MyGary LightNovel\" - kertas krem bergaya buku
-// interaktif (light novel). Warna serif coklat tua, aksen emas,
-// background krem dengan tekstur kertas.
-// ============================================================
-
 import 'package:flutter/material.dart';
 
 class AppTheme {
@@ -15,10 +7,10 @@ class AppTheme {
   static const Color paperShadow = Color(0xFFE8DFC9);     // bayangan kertas
   static const Color inkBrown = Color(0xFF4A3520);        // teks utama
   static const Color inkSoft = Color(0xFF7A6A55);         // teks sekunder
-  static const Color goldClip = Color(0xFFE8B84A);        // paperclip emas
-  static const Color goldClipDark = Color(0xFFB8881A);    // bayangan emas
-  static const Color accentRed = Color(0xFF8B3A2A);       // aksen ending tragis
-  static const Color accentGreen = Color(0xFF4A6B3A);     // aksen ending idealis
+  static const Color goldClip = Color(0xFFE8B84A);        
+  static const Color goldClipDark = Color(0xFFB8881A);    
+  static const Color accentRed = Color(0xFF8B3A2A);       
+  static const Color accentGreen = Color(0xFF4A6B3A);     
 
   // Spacing (8pt grid)
   static const double sp1 = 8;

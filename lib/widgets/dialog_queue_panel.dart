@@ -1,11 +1,3 @@
-// ============================================================
-// widgets/dialog_queue_panel.dart
-// ------------------------------------------------------------
-// Panel \"Queue Dialog\": menampilkan dialog karakter dari
-// DialogQueue (FIFO). Tombol \"Lanjut\" memanggil dequeue() yang
-// mengeluarkan baris paling DEPAN sesuai urutan masuknya.
-// ============================================================
-
 import 'package:flutter/material.dart';
 import '../engine/game_engine.dart';
 import '../theme/app_theme.dart';

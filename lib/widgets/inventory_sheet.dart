@@ -1,11 +1,3 @@
-// ============================================================
-// widgets/inventory_sheet.dart
-// ------------------------------------------------------------
-// BottomSheet panel \"Inventory\" - menampilkan isi InventoryBST
-// secara in-order (otomatis terurut alfabetis berkat aturan
-// pointer kiri < parent < kanan di BST).
-// ============================================================
-
 import 'package:flutter/material.dart';
 import '../engine/game_engine.dart';
 import '../theme/app_theme.dart';

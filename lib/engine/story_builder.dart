@@ -1,13 +1,3 @@
-// ============================================================
-// engine/story_builder.dart
-// ------------------------------------------------------------
-// Membangun BINARY TREE alur cerita berdasarkan naskah
-// \"Server Error di Negeri Sendiri\".
-//
-// Setiap StoryNode punya max 2 anak: left (Pilihan A), right (Pilihan B).
-// Daun-daun pohon (leaf) adalah ending A, B, atau C.
-// ============================================================
-
 import '../models/story_node.dart';
 import '../models/event.dart';
 import '../models/player.dart';

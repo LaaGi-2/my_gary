@@ -1,10 +1,3 @@
-// ============================================================
-// screens/home_screen.dart
-// ------------------------------------------------------------
-// Layar pembuka \"MyGary LightNovel\" - tombol Mulai & Keluar.
-// Mengikuti gaya gambar referensi: kertas krem + paperclip emas.
-// ============================================================
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../theme/app_theme.dart';
@@ -48,7 +41,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                   const Text(
-                    'LightNovel',
+                    'Story',
                     style: TextStyle(
                       fontFamily: 'serif',
                       fontSize: 30,

@@ -1,5 +1,5 @@
-name: mygary_lightnovel
-description: "MyGary LightNovel - QuestNode: Interactive branching story engine (Server Error di Negeri Sendiri)."
+name: mygary_Story
+description: "MyGary Story - Server Error di Negeri Sendiri."
 publish_to: 'none'
 version: 1.0.0+1
 

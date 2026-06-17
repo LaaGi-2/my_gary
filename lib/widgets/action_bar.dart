@@ -1,9 +1,3 @@
-// ============================================================
-// widgets/action_bar.dart
-// ------------------------------------------------------------
-// Action buttons: Undo (LIFO pop), Redo, History, Inventory.
-// ============================================================
-
 import 'package:flutter/material.dart';
 import '../engine/game_engine.dart';
 import '../theme/app_theme.dart';

@@ -1,9 +1,3 @@
-// ============================================================
-// widgets/narrative_panel.dart
-// ------------------------------------------------------------
-// Panel teks utama menampilkan narasi cerita node aktif.
-// ============================================================
-
 import 'package:flutter/material.dart';
 import '../models/story_node.dart';
 import '../theme/app_theme.dart';

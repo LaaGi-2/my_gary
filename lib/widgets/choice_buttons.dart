@@ -1,9 +1,3 @@
-// ============================================================
-// widgets/choice_buttons.dart
-// ------------------------------------------------------------
-// Tombol Decision A / Decision B. Memanggil engine.pilih(kiri:).
-// ============================================================
-
 import 'package:flutter/material.dart';
 import '../engine/game_engine.dart';
 import '../models/story_node.dart';

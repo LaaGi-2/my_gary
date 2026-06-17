@@ -1,12 +1,3 @@
-// ============================================================
-// screens/gallery_screen.dart
-// ------------------------------------------------------------
-// Galeri Semua Ending. Daftar leaf node dihasilkan oleh
-// FUNGSI REKURSIF `temukanSemuaEnding()` di GameEngine.
-// Status unlock dari `endingsUnlocked` (terisi saat pemain
-// menyentuh leaf node yang sesuai).
-// ============================================================
-
 import 'package:flutter/material.dart';
 import '../engine/game_engine.dart';
 import '../models/story_node.dart';
@@ -19,9 +10,6 @@ class GalleryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Catatan: GameEngine dibuat baru di sini hanya untuk menelusuri
-    // pohon (struktur sama). Untuk track unlock-cross-screen di
-    // aplikasi nyata, gunakan Provider/InheritedWidget. Sederhana di sini.
     final engine = GameEngine();
     final endings = engine.temukanSemuaEnding();
 

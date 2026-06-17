@@ -1,10 +1,3 @@
-// ============================================================
-// widgets/paper_panel.dart
-// ------------------------------------------------------------
-// Widget reusable: panel kertas bergaya buku interaktif dengan
-// paperclip emas opsional. Dipakai untuk semua panel utama.
-// ============================================================
-
 import 'package:flutter/material.dart';
 import '../theme/app_theme.dart';
 

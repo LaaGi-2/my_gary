@@ -1,7 +1,7 @@
 # Halaman Menu - MyGary Light Novel
 
 ## 📋 Deskripsi
-Halaman menu dengan desain elegant yang menampilkan aplikasi "MyGary - LightNovel" dengan beberapa fitur dekoratif yang indah.
+Halaman menu dengan desain elegant yang menampilkan aplikasi "MyGary - Story" dengan beberapa fitur dekoratif yang indah.
 
 ## 🎨 Design Specifications
 
@@ -36,7 +36,7 @@ Halaman menu dengan desain elegant yang menampilkan aplikasi "MyGary - LightNove
 
 #### 5. **Typography**
 - **Title**: "MyGary" - Display Medium, 54px
-- **Subtitle**: "LightNovel" - Title Large, 22px
+- **Subtitle**: "Story" - Title Large, 22px
 - **Menu Items**: Variasi ukuran untuk text di card
 
 #### 6. **Buttons**
@@ -111,7 +111,7 @@ flutter run
 
 ### Mengubah Teks:
 - Title "MyGary" → ubah text di Text widget
-- Subtitle "LightNovel" → ubah text di Text widget
+- Subtitle "Story" → ubah text di Text widget
 
 ### Mengubah Animasi:
 - Ubah duration di AnimationController initialization

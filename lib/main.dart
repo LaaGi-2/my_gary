@@ -1,10 +1,3 @@
-// ============================================================
-// main.dart - Entry point Flutter
-// ------------------------------------------------------------
-// MyGary LightNovel (QuestNode engine)
-// Tema: kertas krem, paperclip emas, font serif coklat.
-// ============================================================
-
 import 'package:flutter/material.dart';
 import 'theme/app_theme.dart';
 import 'screens/home_screen.dart';
@@ -19,7 +12,7 @@ class MyGaryApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'MyGary LightNovel',
+      title: 'MyGary Story',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light,
       home: const HomeScreen(),

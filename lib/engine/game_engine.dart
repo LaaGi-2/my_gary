@@ -1,17 +1,3 @@
-// ============================================================
-// engine/game_engine.dart
-// ------------------------------------------------------------
-// CORE LOGIC: GameEngine mengikat semua struktur data:
-//   - BinaryTree (root StoryNode)        : alur cerita
-//   - DoubleLinkedList<StoryNode>        : history log (forward/backward)
-//   - SaveStack<GameSnapshot>            : LIFO untuk Undo
-//   - DialogQueue<String>                : FIFO untuk dialog
-//   - InventoryBST                       : pencarian item cepat
-//   - RecursiveEndingFinder              : algoritma rekursif menelusuri leaf
-//
-// Sengaja extends ChangeNotifier agar UI Flutter bisa reactive.
-// ============================================================
-
 import 'package:flutter/foundation.dart';
 
 import '../models/event.dart';
@@ -23,7 +9,7 @@ import '../structures/inventory_bst.dart';
 import '../structures/save_stack.dart';
 import 'story_builder.dart';
 
-/// Snapshot ringan untuk Undo/Redo (state penuh).
+/// Snapshot ringan untuk Undo/Redo.
 class GameSnapshot {
   final String nodeId;
   final Map<String, int> playerStats;
@@ -53,17 +39,12 @@ class GameEngine extends ChangeNotifier {
   final DialogQueue<String> _dialogQueue = DialogQueue<String>();
   final InventoryBST _inventory = InventoryBST();
 
-  // Ending yang sudah dibuka (untuk galeri).
-  final Set<String> _endingsUnlocked = <String>{};
-
   // ============= GETTERS UNTUK UI =============
-  StoryNode get root => _root;
   StoryNode get current => _current;
   Player get player => _player;
   DialogQueue<String> get dialogQueue => _dialogQueue;
   InventoryBST get inventory => _inventory;
   DoubleLinkedList<StoryNode> get history => _history;
-  Set<String> get endingsUnlocked => _endingsUnlocked;
   bool get canUndo => !_undoStack.isEmpty;
   bool get canRedo => !_redoStack.isEmpty;
 
@@ -80,31 +61,24 @@ class GameEngine extends ChangeNotifier {
     _applyNodeEffects(_current);
     notifyListeners();
   }
-
-  // Jalankan efek node saat ini: events polimorfik, item ke BST,
-  // dan dialog ke Queue (FIFO).
+  
   void _applyNodeEffects(StoryNode node) {
-    // Polimorfisme: Event.jalankanEvent() berbeda untuk DialogEvent vs CombatEvent.
     for (final Event e in node.events) {
       e.jalankanEvent(_player);
       if (e is DialogEvent) {
-        // ENQUEUE dialog ke antrean (akan di-dequeue FIFO oleh UI).
+        // ENQUEUE dialog ke antrean.
         for (final baris in e.kalimat) {
           _dialogQueue.enqueue('${e.pembicara}: $baris');
         }
       }
     }
-    // Item masuk InventoryBST (otomatis terurut via pointer left/right).
+    // Item masuk InventoryBST.
     if (node.itemDidapat != null) {
       _inventory.insert(node.itemDidapat!, 'Diperoleh di ${node.bab}');
     }
-    // Jika ini ending leaf, catat sebagai unlocked.
-    if (node.isEnding && node.endingKode != null) {
-      _endingsUnlocked.add(node.endingKode!);
-    }
   }
 
-  // Buat snapshot sebelum berpindah node (untuk undo).
+  // Buat snapshot -> inisialisasi simpan sementara.
   GameSnapshot _snapshot() {
     return GameSnapshot(
       nodeId: _current.id,
@@ -113,13 +87,12 @@ class GameEngine extends ChangeNotifier {
     );
   }
 
-  // ============= NAVIGASI BINARY TREE =============
-  // Pilih anak kiri (Pilihan A) atau kanan (Pilihan B).
+  // ============= NAVIGASI =============
   void pilih({required bool kiri}) {
     final next = kiri ? _current.left : _current.right;
     if (next == null) return; // sudah leaf
 
-    // Sebelum pindah: simpan state ke SaveStack (LIFO untuk undo).
+    // simpan state ke SaveStack (undo).
     _undoStack.push(_snapshot());
     _redoStack.clear(); // redo invalid setelah pilihan baru
 
@@ -138,7 +111,7 @@ class GameEngine extends ChangeNotifier {
     if (snap == null) return;
     _redoStack.push(_snapshot()); // simpan current ke redo
     _restoreSnapshot(snap);
-    _history.removeLast(); // hapus jejak terakhir di DLL
+    _history.removeLast();        // hapus jejak terakhir di DLL
     notifyListeners();
   }
 
@@ -182,42 +155,31 @@ class GameEngine extends ChangeNotifier {
   bool punyaItem(String item) => _inventory.contains(item);
 
   // ============= ALGORITMA REKURSIF: TEMUKAN SEMUA ENDING =============
-  // Fungsi rekursif yang memanggil dirinya sendiri untuk menelusuri
-  // SEMUA daun (leaf) di binary tree cerita.
-  // Base case: node null, atau node.isEnding (leaf cerita).
   List<StoryNode> temukanSemuaEnding() {
-    final hasil = <StoryNode>[];
-    // Gunakan Set untuk melacak ID node yang sudah dikunjungi
-    final dikunjungi = <String>{};
-    _telusuriLeafRekursif(_root, hasil, dikunjungi);
-
-    hasil.sort((node1, node2) {
-      final kode1 = node1.endingKode ?? '';
-      final kode2 = node2.endingKode ?? '';
-      return kode1.compareTo(kode2);
-    });
-
-    return hasil;
-  }
-
-  void _telusuriLeafRekursif(
-      StoryNode? node, List<StoryNode> acc, Set<String> dikunjungi) {
-    // node tidak ada -> berhenti.
-    if (node == null) return;
-
-    // Jika node ini sudah pernah dicek dari cabang lain, lewati agar tidak duplikat.
-    if (dikunjungi.contains(node.id)) return;
-
-    // Tandai node ini sudah dikunjungi
-    dikunjungi.add(node.id);
-
-    // node adalah ending (leaf cerita) -> kumpulkan & berhenti rekursi.
-    if (node.isEnding || node.isLeaf) {
-      acc.add(node);
-      return;
+      final hasil = <StoryNode>[];
+      // Gunakan Set untuk melacak ID node yang sudah dikunjungi
+      final dikunjungi = <String>{}; 
+      _telusuriLeafRekursif(_root, hasil, dikunjungi);
+      hasil.sort((a, b) => a.id.compareTo(b.id));
+      return hasil;
     }
-    // panggil diri sendiri untuk anak kiri & kanan.
-    _telusuriLeafRekursif(node.left, acc, dikunjungi);
-    _telusuriLeafRekursif(node.right, acc, dikunjungi);
-  }
+  
+    void _telusuriLeafRekursif(StoryNode? node, List<StoryNode> acc, Set<String> dikunjungi) {
+      // node tidak ada -> berhenti.
+      if (node == null) return;
+      // Jika node ini sudah pernah dicek dari cabang lain, lewati agar tidak duplikat.
+      if (dikunjungi.contains(node.id)) return;
+      
+      // Tandai node ini sudah dikunjungi
+      dikunjungi.add(node.id);
+  
+      // node adalah ending (leaf cerita) -> kumpulkan & berhenti rekursi.
+      if (node.isEnding || node.isLeaf) {
+        acc.add(node);
+        return;
+      }
+      // panggil diri sendiri untuk anak kiri & kanan.
+      _telusuriLeafRekursif(node.left, acc, dikunjungi);
+      _telusuriLeafRekursif(node.right, acc, dikunjungi);
+    }
 }
